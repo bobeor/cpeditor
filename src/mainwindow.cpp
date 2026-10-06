@@ -1001,6 +1001,9 @@ void MainWindow::formatSource(bool selectionOnly, bool logOnNoChange)
         Extensions::YAPFormatter(editor, language, selectionOnly, logOnNoChange, log, this).format();
     else
         Extensions::ClangFormatter(editor, language, selectionOnly, logOnNoChange, log, this).format();
+
+    if (fakevimHandler)
+        fakevimHandler->setTextCursor(editor->textCursor());
 }
 
 void MainWindow::setLanguage(const QString &lang)
